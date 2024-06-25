@@ -1,8 +1,11 @@
-// models/books.js
-
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
   bookTitle: {
     type: String,
     required: true,

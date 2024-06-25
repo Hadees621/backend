@@ -4,6 +4,7 @@ const Book = require("../modals/books");
 const AddBook = async (req, res) => {
   try {
     const {
+      id,
       bookTitle,
       authorName,
       bookImage,
@@ -20,6 +21,7 @@ const AddBook = async (req, res) => {
     } = req.body;
 
     const book = new Book({
+      id,
       bookTitle,
       authorName,
       bookImage,
@@ -42,4 +44,29 @@ const AddBook = async (req, res) => {
   }
 };
 
-module.exports = { AddBook };
+// Get all books from DB
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.status(200).json(books);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get book by ID
+const getBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const book = await Book.findOne({ id });
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).json(book);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = { AddBook, getAllBooks, getBookById };
