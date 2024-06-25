@@ -13,6 +13,14 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  wordsCount: {
+    type: String,
+    required: true,
+  },
+  bookGenre: {
+    type: String,
+    required: true,
+  },
 });
 
 const Books = mongoose.model("Book", bookSchema);
