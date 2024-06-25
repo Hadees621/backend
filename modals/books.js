@@ -1,3 +1,5 @@
+// models/books.js
+
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
@@ -21,8 +23,40 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
+  moreInfo: {
+    type: String,
+    required: true,
+  },
+  fullDescription: {
+    type: String,
+    required: true,
+  },
+  isbn: {
+    type: String,
+    required: true,
+  },
+  publishedDate: {
+    type: String,
+    required: true,
+  },
+  pages: {
+    type: Number,
+    required: true,
+  },
+  size: {
+    type: String,
+    required: true,
+  },
+  imprint: {
+    type: String,
+    required: true,
+  },
 });
 
-const Books = mongoose.model("Book", bookSchema);
+const Book = mongoose.model("Book", bookSchema);
 
-module.exports = Books;
+module.exports = Book;
