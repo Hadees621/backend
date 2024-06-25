@@ -1,16 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const booksRoutes = require("./routes/bookRoutes");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 require("dotenv").config();
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.use("/api/v1", booksRoutes);
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+});
 
 //MongoDB connection
 const PORT = process.env.PORT || 4000;
-// const dbURI = 'mongodb://localhost:27017/olympia';
+const dbURI = "mongodb://0.0.0.0:27017/olympia";
 
 mongoose
-  .connect("mongodb://0.0.0.0:27017/olympia", {})
+  .connect(dbURI, {})
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
