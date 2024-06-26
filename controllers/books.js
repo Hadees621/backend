@@ -69,6 +69,7 @@ const getBookById = async (req, res) => {
   }
 };
 
+// Delete book by ID
 const deleteBookById = async (req, res) => {
   try {
     const { id } = req.params;
