@@ -69,4 +69,24 @@ const getBookById = async (req, res) => {
   }
 };
 
-module.exports = { AddBook, getAllBooks, getBookById };
+const deleteBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(`Attempting to delete book with id: ${id}`);
+
+    const deletedBook = await Book.findOneAndDelete({ id });
+
+    if (!deletedBook) {
+      console.log("Book not found");
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    console.log("Book deleted successfully");
+    res.status(200).json({ message: "Book deleted successfully", deletedBook });
+  } catch (err) {
+    console.error("Error deleting book:", err.message);
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = { AddBook, getAllBooks, getBookById, deleteBookById };
