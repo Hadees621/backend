@@ -19,7 +19,7 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
   wordsCount: {
-    type: String,
+    type: Number,
     required: true,
   },
   bookGenre: {
@@ -27,14 +27,6 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
   description: {
-    type: String,
-    required: true,
-  },
-  moreInfo: {
-    type: String,
-    required: true,
-  },
-  fullDescription: {
     type: String,
     required: true,
   },
